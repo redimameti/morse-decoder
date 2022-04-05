@@ -1,7 +1,7 @@
 # Morse Decoder
 Live link: https://redimameti.github.io/morse-decoder/
 
-![screen capture of application](screen-cap.png)
+![screen capture of application](screen-cap.gif)
 
 This project allows the user to enter text and receive a morse code translation, or vice versa.
 
