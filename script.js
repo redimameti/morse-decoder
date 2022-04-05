@@ -66,23 +66,21 @@ const morseObj = Object.entries(alphabetObj).reduce(
 	(acc, [key, value]) => ((acc[value] = key), acc),
 	{},
 );
-
-const testFunc = (obj) => {
-	if (Object.entries(obj).includes(char)) {
-		return "null";
-	}
-};
+console.log(Object.entries(morseObj));
 
 const translate = (str, obj) => {
-	let splitStr = str.split("");
-	const indexArr = splitStr.map((char) => Object.keys(obj).indexOf(char));
+	const indexArr = str.map((char) => Object.keys(obj).indexOf(char));
 	return indexArr.map((num) => Object.values(obj)[num]).join(" ");
 };
 
 text.addEventListener("input", () => {
-	morse.value = translate(text.value, alphabetObj);
+	morse.value = translate(text.value.toLowerCase().split(""), alphabetObj);
 });
 
 morse.addEventListener("input", () => {
-	text.value = translate(morse.value, morseObj);
+	if (morse.value.match(/[a-zA-Z]/)) {
+		alert("Invalid character entered.");
+		morse.value = "";
+	}
+	text.value = translate(morse.value.split(" "), morseObj);
 });
