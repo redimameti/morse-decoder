@@ -59,6 +59,7 @@ const alphabetObj = {
 	"!": "-.-.--",
 	"@": ".--.-.",
 	" ": " / ",
+	"\n": "\n",
 };
 
 const morseObj = Object.entries(alphabetObj).reduce(
