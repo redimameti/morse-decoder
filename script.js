@@ -66,22 +66,28 @@ const morseObj = Object.entries(alphabetObj).reduce(
 	(acc, [key, value]) => ((acc[value] = key), acc),
 	{},
 );
-morseObj[` / `] = "x"
-console.log(morseObj[` / `])
+
+morseObj[` / `] = "s";
+morseObj[` `] = "";
+// console.log("my name".split(" "))
 
 const translateToMorse = (str, obj) => {
-	const indexArr = str.map((char) => Object.keys(obj).indexOf(char));
-	return indexArr.map((num) => Object.values(obj)[num]).join(" ");
+	const charArr = str
+		.toLowerCase()
+		.split("")
+		.map((char) => obj[char]);
+	return charArr.join(" ");
 };
 
 const translateToText = (str, obj) => {
-	const indexArr = str.map((char) => Object.keys(obj).indexOf(char));
-	const newStr = indexArr.map((num) => Object.values(obj)[num]).join(" ");
-	return newStr.replace(/\s/g,"").replace(/\s+/g,” “);
+	return str
+		.split(" ")
+		.map((char) => obj[char])
+		.join(" ");
 };
 
 text.addEventListener("input", () => {
-	morse.value = translateToMorse(text.value.toLowerCase().split(""), alphabetObj);
+	morse.value = translateToMorse(text.value, alphabetObj);
 });
 
 morse.addEventListener("input", () => {
@@ -89,5 +95,5 @@ morse.addEventListener("input", () => {
 		alert("Invalid character entered.");
 		morse.value = "";
 	}
-	text.value = translateToText(morse.value.split(" "), morseObj);
+	text.value = translateToText(morse.value, morseObj);
 });
