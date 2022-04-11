@@ -59,6 +59,8 @@ const alphabetObj = {
 	"!": "-.-.--",
 	"@": ".--.-.",
 	" ": " / ",
+	" ": "/",
+	"": "",
 	"\n": "\n",
 };
 
@@ -66,10 +68,6 @@ const morseObj = Object.entries(alphabetObj).reduce(
 	(acc, [key, value]) => ((acc[value] = key), acc),
 	{},
 );
-
-morseObj[` / `] = "s";
-morseObj[` `] = "";
-// console.log("my name".split(" "))
 
 const translateToMorse = (str, obj) => {
 	const charArr = str
@@ -83,7 +81,7 @@ const translateToText = (str, obj) => {
 	return str
 		.split(" ")
 		.map((char) => obj[char])
-		.join(" ");
+		.join("");
 };
 
 text.addEventListener("input", () => {
